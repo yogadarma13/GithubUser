@@ -50,6 +50,7 @@ dependencies {
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$life_cycle_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$life_cycle_version"
 
     // RxJava3

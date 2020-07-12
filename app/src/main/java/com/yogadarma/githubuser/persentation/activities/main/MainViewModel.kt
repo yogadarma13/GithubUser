@@ -7,17 +7,15 @@ import androidx.lifecycle.ViewModel
 import com.yogadarma.githubuser.domain.responses.SearchUserResponse
 import com.yogadarma.githubuser.domain.usecases.SearchUserUseCase
 
-class MainViewModel(private val searchUserUseCase: SearchUserUseCase): ViewModel() {
+class MainViewModel(private val searchUserUseCase: SearchUserUseCase) : ViewModel() {
 
-    val resultSearch = MutableLiveData<SearchUserResponse>()
+    private val resultSearch = MutableLiveData<SearchUserResponse>()
 
     fun setResultSearch(username: String) {
         searchUserUseCase.invoke(username).subscribe(this::handleResponse, this::handleError)
     }
 
-    fun getResultSearch(): LiveData<SearchUserResponse> {
-        return resultSearch
-    }
+    fun getResultSearch(): LiveData<SearchUserResponse> = resultSearch
 
     private fun handleResponse(response: SearchUserResponse) {
         resultSearch.postValue(response)

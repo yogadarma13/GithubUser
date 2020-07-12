@@ -13,7 +13,7 @@ class NetworkClient {
     companion object {
         private var retrofit: Retrofit? = null
 
-        private fun interceptor() : Interceptor {
+        private fun interceptor(): Interceptor {
             return Interceptor { chain ->
                 var request = chain.request().newBuilder()
                     .header("Authorization", "token ff73b0b5d43bb65130e5666e0a8ee8a3ec604af2")
@@ -46,6 +46,7 @@ class NetworkClient {
             return retrofit
         }
 
-        fun provideNetworkApi(retrofit: Retrofit): NetworkApi = retrofit.create(NetworkApi::class.java)
+        fun provideNetworkApi(retrofit: Retrofit): NetworkApi =
+            retrofit.create(NetworkApi::class.java)
     }
 }

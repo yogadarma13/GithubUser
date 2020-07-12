@@ -10,7 +10,7 @@ import com.yogadarma.githubuser.R
 import com.yogadarma.githubuser.domain.responses.UserData
 import kotlinx.android.synthetic.main.layout_user.view.*
 
-class UserAdapter(private val listUser: ArrayList<UserData?>?) :
+class UserAdapter(private val listUser: ArrayList<UserData>?) :
     RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     private var onItemClickCallBack: OnItemClickCallBack? = null

@@ -8,6 +8,7 @@ val retrofitModule = module {
     single {
         NetworkClient.provideRetrofit(get()) as Retrofit
     }
+
     single {
         NetworkClient.provideNetworkApi(get())
     }

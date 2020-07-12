@@ -7,17 +7,16 @@ import androidx.lifecycle.ViewModel
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.domain.usecases.GetDetailUserUseCase
 
-class DetailViewModel(private val detailUserUseCase: GetDetailUserUseCase): ViewModel() {
+class DetailViewModel(private val detailUserUseCase: GetDetailUserUseCase) : ViewModel() {
 
-    val dataUser = MutableLiveData<DetailUserResponse>()
+    private val dataUser = MutableLiveData<DetailUserResponse>()
 
     fun setDetailUser(username: String) {
         detailUserUseCase.invoke(username).subscribe(this::handleResponse, this::handleError)
     }
 
-    fun getDetailUser(): LiveData<DetailUserResponse> {
-        return dataUser
-    }
+    fun getDetailUser(): LiveData<DetailUserResponse> = dataUser
+
 
     private fun handleResponse(response: DetailUserResponse) {
         dataUser.postValue(response)

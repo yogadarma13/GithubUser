@@ -8,7 +8,7 @@ buildscript {
     ext.life_cycle_version = "2.2.0"
     ext.circle_image_view_version = "3.1.0"
     ext.glide_version = "4.11.0"
-    ext.koin_version = '2.1.5'
+    ext.koin_version = "2.1.5"
 
     repositories {
         google()

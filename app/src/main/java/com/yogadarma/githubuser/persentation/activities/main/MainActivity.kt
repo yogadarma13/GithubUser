@@ -2,6 +2,7 @@ package com.yogadarma.githubuser.persentation.activities.main
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yogadarma.githubuser.R
 import com.yogadarma.githubuser.domain.responses.UserData
+import com.yogadarma.githubuser.persentation.activities.detail.DetailUserActivity
 import com.yogadarma.githubuser.persentation.adapter.UserAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         sv_user_github.setSearchableInfo(searchManager.getSearchableInfo(componentName))
         sv_user_github.queryHint = resources.getString(R.string.search_hint)
 
-        sv_user_github.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        sv_user_github.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let { mainViewModel.setResultSearch(it) }
                 return true
@@ -46,22 +48,21 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.getResultSearch().observe(this, Observer {
             if (it != null) {
-                progress_bar.visibility= View.GONE
                 rv_user_github.layoutManager = LinearLayoutManager(this)
                 userAdapter = UserAdapter(it.items);
                 rv_user_github.adapter = userAdapter
 
                 setupListener()
-            } else {
-                progress_bar.visibility = View.VISIBLE
             }
         })
     }
 
     private fun setupListener() {
-        userAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallBack{
+        userAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallBack {
             override fun onItemClicked(user: UserData) {
-                Toast.makeText(this@MainActivity, user.login, Toast.LENGTH_LONG).show()
+                val intent = Intent(this@MainActivity, DetailUserActivity::class.java)
+                intent.putExtra(DetailUserActivity.ARG_USERNAME, user.login)
+                startActivity(intent)
             }
 
         })

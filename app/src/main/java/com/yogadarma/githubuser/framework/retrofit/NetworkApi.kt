@@ -2,6 +2,7 @@ package com.yogadarma.githubuser.framework.retrofit
 
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.domain.responses.SearchUserResponse
+import com.yogadarma.githubuser.domain.responses.UserData
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -19,13 +20,13 @@ interface NetworkApi {
         @Path("username") username: String
     ): Observable<DetailUserResponse>
 
-//    @GET("users/{username}/followers")
-//    fun getFollowersUser(
-//        @Path("username") username: String
-//    )
-//
-//    @GET("users/{username}/following")
-//    fun getFollowingUser(
-//        @Path("username") username: String
-//    )
+    @GET("users/{username}/followers")
+    fun getFollowerUser(
+        @Path("username") username: String
+    ): Observable<ArrayList<UserData>?>
+
+    @GET("users/{username}/following")
+    fun getFollowingUser(
+        @Path("username") username: String
+    ): Observable<ArrayList<UserData>?>
 }
