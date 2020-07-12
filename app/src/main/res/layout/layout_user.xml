@@ -22,7 +22,7 @@
         android:layout_marginLeft="16dp"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_user_company"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@id/civ_user_image"
@@ -30,18 +30,18 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Yoga Darma" />
 
-    <TextView
-        android:id="@+id/tv_user_company"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/civ_user_image"
-        app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="BCC Corporation" />
+<!--    <TextView-->
+<!--        android:id="@+id/tv_user_company"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@id/civ_user_image"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tv_user_name"-->
+<!--        app:layout_constraintVertical_chainStyle="packed"-->
+<!--        tools:text="BCC Corporation" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
