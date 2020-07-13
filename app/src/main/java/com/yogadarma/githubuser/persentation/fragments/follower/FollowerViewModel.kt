@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModel
 import com.yogadarma.githubuser.domain.responses.UserData
 import com.yogadarma.githubuser.domain.usecases.GetFollowerUserUseCase
 
-class FollowerViewModel(private val getFollowerUserUseCase: GetFollowerUserUseCase) : ViewModel() {
+class FollowerViewModel(private val followerUserUseCase: GetFollowerUserUseCase) : ViewModel() {
 
     private val followerData = MutableLiveData<ArrayList<UserData>?>()
 
     fun setFollowerData(username: String) {
-        getFollowerUserUseCase.invoke(username).subscribe(this::handleResponse, this::handleError)
+        followerUserUseCase.invoke(username).subscribe(this::handleResponse, this::handleError)
     }
 
     fun getFollowerData(): LiveData<ArrayList<UserData>?> = followerData

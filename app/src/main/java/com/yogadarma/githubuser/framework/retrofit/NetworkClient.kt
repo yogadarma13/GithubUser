@@ -1,6 +1,5 @@
 package com.yogadarma.githubuser.framework.retrofit
 
-import android.content.Context
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -24,7 +23,7 @@ class NetworkClient {
             }
         }
 
-        fun provideRetrofit(context: Context): Retrofit? {
+        fun provideRetrofit(): Retrofit? {
             if (retrofit == null) {
                 val httpClientBuilder = OkHttpClient.Builder()
                     .addNetworkInterceptor(interceptor())

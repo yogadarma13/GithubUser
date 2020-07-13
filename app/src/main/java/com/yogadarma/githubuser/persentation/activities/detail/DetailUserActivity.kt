@@ -34,6 +34,20 @@ class DetailUserActivity : AppCompatActivity() {
             }
         })
 
+        detailViewModel.getFollowerUser().observe(this, Observer {
+            if (it != null) {
+                val countFollower = resources.getString(R.string.count_follower, it.size)
+                tv_count_follower.text = countFollower
+            }
+        })
+
+        detailViewModel.getFollowingUser().observe(this, Observer {
+            if (it != null) {
+                val countFollowing = resources.getString(R.string.count_following, it.size)
+                tv_count_following.text = countFollowing
+            }
+        })
+
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         sectionsPagerAdapter.username = username
         view_pager.adapter = sectionsPagerAdapter

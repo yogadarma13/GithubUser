@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Github User</string>
-    <string name="search_hint">Masukkan username</string>
+    <string name="search_hint">Search username</string>
+    <string name="count_follower">%1$d Follower</string>
+    <string name="count_following">%1$d Following</string>
     <string name="tab_text_1">Follower</string>
     <string name="tab_text_2">Following</string>
+    <string name="language_setting">Language</string>
 </resources>

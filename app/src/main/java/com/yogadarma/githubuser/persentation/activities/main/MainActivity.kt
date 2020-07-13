@@ -5,10 +5,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yogadarma.githubuser.R
@@ -36,11 +37,13 @@ class MainActivity : AppCompatActivity() {
 
         sv_user_github.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                progress_bar.visibility = View.VISIBLE
                 query?.let { mainViewModel.setResultSearch(it) }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                progress_bar.visibility = View.VISIBLE
                 newText?.let { mainViewModel.setResultSearch(it) }
                 return true
             }
@@ -48,8 +51,9 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.getResultSearch().observe(this, Observer {
             if (it != null) {
+                progress_bar.visibility = View.GONE
                 rv_user_github.layoutManager = LinearLayoutManager(this)
-                userAdapter = UserAdapter(it.items);
+                userAdapter = UserAdapter(it.items)
                 rv_user_github.adapter = userAdapter
 
                 setupListener()
@@ -64,7 +68,19 @@ class MainActivity : AppCompatActivity() {
                 intent.putExtra(DetailUserActivity.ARG_USERNAME, user.login)
                 startActivity(intent)
             }
-
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_change_language) {
+            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
