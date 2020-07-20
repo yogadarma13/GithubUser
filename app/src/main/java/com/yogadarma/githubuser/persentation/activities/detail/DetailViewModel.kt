@@ -4,16 +4,21 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.yogadarma.githubuser.domain.entity.Favorite
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.domain.responses.UserData
+import com.yogadarma.githubuser.domain.usecases.AddFavoriteUseCase
 import com.yogadarma.githubuser.domain.usecases.GetDetailUserUseCase
 import com.yogadarma.githubuser.domain.usecases.GetFollowerUserUseCase
 import com.yogadarma.githubuser.domain.usecases.GetFollowingUserUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class DetailViewModel(
     private val detailUserUseCase: GetDetailUserUseCase,
     private val followerUserUseCase: GetFollowerUserUseCase,
-    private val followingUserUseCase: GetFollowingUserUseCase
+    private val followingUserUseCase: GetFollowingUserUseCase,
+    private val addFavoriteUseCase: AddFavoriteUseCase
 ) : ViewModel() {
 
     private val dataUser = MutableLiveData<DetailUserResponse>()
@@ -22,8 +27,14 @@ class DetailViewModel(
 
     fun setDetailUser(username: String) {
         detailUserUseCase.invoke(username).subscribe(this::handleResponseDetail, this::handleError)
-        followerUserUseCase.invoke(username).subscribe(this::handleResponseFollower, this::handleError)
-        followingUserUseCase.invoke(username).subscribe(this::handleResponseFollowing, this::handleError)
+        followerUserUseCase.invoke(username)
+            .subscribe(this::handleResponseFollower, this::handleError)
+        followingUserUseCase.invoke(username)
+            .subscribe(this::handleResponseFollowing, this::handleError)
+    }
+
+    suspend fun setFavoriteUser(favorite: Favorite) {
+        addFavoriteUseCase.invoke(favorite)
     }
 
     fun getDetailUser(): LiveData<DetailUserResponse> = dataUser

@@ -20,7 +20,8 @@ class App : Application(), LifecycleObserver {
                 repositoryModule,
                 retrofitModule,
                 useCaseModule,
-                viewModelModule
+                viewModelModule,
+                appDatabaseModule
             )
         }
 

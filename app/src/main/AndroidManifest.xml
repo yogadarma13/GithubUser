@@ -13,12 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".persentation.activities.detail.DetailUserActivity"
-            android:parentActivityName=".persentation.activities.main.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".persentation.activities.main.MainActivity" />
-        </activity>
+            android:name=".persentation.activities.favorite.FavoriteActivity"
+            android:launchMode="singleTop"/>
+        <activity android:name=".persentation.activities.detail.DetailUserActivity" />
         <activity
             android:name=".persentation.activities.main.MainActivity"
             android:launchMode="singleTop">

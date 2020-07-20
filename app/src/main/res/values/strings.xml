@@ -6,4 +6,5 @@
     <string name="tab_text_1">Follower</string>
     <string name="tab_text_2">Following</string>
     <string name="language_setting">Language</string>
+    <string name="favorite_page">Favorite</string>
 </resources>

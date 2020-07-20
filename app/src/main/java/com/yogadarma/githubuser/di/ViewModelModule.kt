@@ -1,10 +1,8 @@
 package com.yogadarma.githubuser.di
 
-import com.yogadarma.githubuser.domain.usecases.GetDetailUserUseCase
-import com.yogadarma.githubuser.domain.usecases.GetFollowerUserUseCase
-import com.yogadarma.githubuser.domain.usecases.GetFollowingUserUseCase
-import com.yogadarma.githubuser.domain.usecases.SearchUserUseCase
+import com.yogadarma.githubuser.domain.usecases.*
 import com.yogadarma.githubuser.persentation.activities.detail.DetailViewModel
+import com.yogadarma.githubuser.persentation.activities.favorite.FavoriteViewModel
 import com.yogadarma.githubuser.persentation.activities.main.MainViewModel
 import com.yogadarma.githubuser.persentation.fragments.follower.FollowerViewModel
 import com.yogadarma.githubuser.persentation.fragments.following.FollowingViewModel
@@ -23,7 +21,8 @@ val viewModelModule = module {
         DetailViewModel(
             get() as GetDetailUserUseCase,
             get() as GetFollowerUserUseCase,
-            get() as GetFollowingUserUseCase
+            get() as GetFollowingUserUseCase,
+            get() as AddFavoriteUseCase
         )
     }
 
@@ -36,6 +35,12 @@ val viewModelModule = module {
     viewModel {
         FollowingViewModel(
             get() as GetFollowingUserUseCase
+        )
+    }
+
+    viewModel {
+        FavoriteViewModel(
+            get() as GetFavoriteUseCase
         )
     }
 }

@@ -7,6 +7,14 @@
     android:background="@color/colorPrimary"
     tools:context=".persentation.activities.detail.DetailUserActivity">
 
+    <Button
+        android:id="@+id/btn_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fav"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/civ_avatar_profile"
         android:layout_width="100dp"

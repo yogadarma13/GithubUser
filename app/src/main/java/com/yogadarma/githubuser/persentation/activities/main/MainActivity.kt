@@ -10,11 +10,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yogadarma.githubuser.R
 import com.yogadarma.githubuser.domain.responses.UserData
 import com.yogadarma.githubuser.persentation.activities.detail.DetailUserActivity
+import com.yogadarma.githubuser.persentation.activities.favorite.FavoriteActivity
 import com.yogadarma.githubuser.persentation.adapter.UserAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -77,9 +79,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_change_language) {
-            val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-            startActivity(intent)
+        when(item.itemId) {
+            R.id.action_to_page_favorite -> {
+                startActivity(Intent(this, FavoriteActivity::class.java))
+            }
+
+            R.id.action_change_language -> {
+                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
+                startActivity(intent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
