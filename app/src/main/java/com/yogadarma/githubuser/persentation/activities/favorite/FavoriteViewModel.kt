@@ -6,7 +6,7 @@ import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.usecases.GetFavoriteUseCase
 
 class FavoriteViewModel(
-    private val favoriteUseCase: GetFavoriteUseCase
+    favoriteUseCase: GetFavoriteUseCase
 ) : ViewModel() {
 
     val allFavorite: LiveData<List<UserData>> = favoriteUseCase.invoke()

@@ -17,6 +17,7 @@ import com.yogadarma.githubuser.R
 import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.persentation.activities.detail.DetailUserActivity
 import com.yogadarma.githubuser.persentation.activities.favorite.FavoriteActivity
+import com.yogadarma.githubuser.persentation.activities.setting.SettingActivity
 import com.yogadarma.githubuser.persentation.adapter.UserAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -85,10 +86,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.action_change_language -> {
-                val intent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-                startActivity(intent)
+                startActivity(Intent(this, SettingActivity::class.java))
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onResume() {
+        progress_bar.visibility = View.GONE
+        super.onResume()
     }
 }

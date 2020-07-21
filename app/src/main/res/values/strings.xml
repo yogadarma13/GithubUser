@@ -5,6 +5,11 @@
     <string name="count_following">%1$d Following</string>
     <string name="tab_text_1">Follower</string>
     <string name="tab_text_2">Following</string>
+    <string name="setting_page">Settings</string>
     <string name="language_setting">Language</string>
+    <string name="selected_language">English</string>
     <string name="favorite_page">Favorite</string>
+    <string name="detail_page">User\'s Detail</string>
+    <string name="add_favorite">Favorit added</string>
+    <string name="cancel_favorite">Favorit canceled</string>
 </resources>

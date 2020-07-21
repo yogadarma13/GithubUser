@@ -12,9 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".persentation.activities.setting.SettingActivity"></activity>
         <activity
             android:name=".persentation.activities.favorite.FavoriteActivity"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity android:name=".persentation.activities.detail.DetailUserActivity" />
         <activity
             android:name=".persentation.activities.main.MainActivity"

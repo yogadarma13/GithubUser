@@ -6,6 +6,11 @@
     <string name="count_following">%1$d Diikuti</string>
     <string name="tab_text_1">Pengikut</string>
     <string name="tab_text_2">Diikuti</string>
+    <string name="setting_page">Pengaturan</string>
     <string name="language_setting">Bahasa</string>
+    <string name="selected_language">Indonesia</string>
     <string name="favorite_page">Favorit</string>
+    <string name="detail_page">Detail User</string>
+    <string name="add_favorite">Favorit ditambahkan</string>
+    <string name="cancel_favorite">Favorit dibatalkan</string>
 </resources>

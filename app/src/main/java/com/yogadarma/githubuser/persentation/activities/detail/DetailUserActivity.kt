@@ -32,6 +32,7 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_detail_user)
 
         supportActionBar?.elevation = 0f
+        supportActionBar?.title = getString(R.string.detail_page)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -98,14 +99,14 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
                     userData
                 )
             }
-            toast("Favorite ditambah")
+            toast(getString(R.string.add_favorite))
         } else {
             GlobalScope.launch {
                 detailViewModel.deleteFavoriteUser(
                     userData
                 )
             }
-            toast("Favorite dibatalkan")
+            toast(getString(R.string.cancel_favorite))
         }
     }
 

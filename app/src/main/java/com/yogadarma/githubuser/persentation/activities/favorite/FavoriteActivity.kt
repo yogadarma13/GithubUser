@@ -23,6 +23,7 @@ class FavoriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite)
 
+        supportActionBar?.title = getString(R.string.favorite_page)
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
