@@ -1,10 +1,9 @@
 package com.yogadarma.githubuser.data.datasource
 
 import androidx.lifecycle.LiveData
-import com.yogadarma.githubuser.domain.entity.Favorite
+import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.domain.responses.SearchUserResponse
-import com.yogadarma.githubuser.domain.responses.UserData
 import io.reactivex.rxjava3.core.Observable
 
 interface UserGithubDataSource {
@@ -17,7 +16,11 @@ interface UserGithubDataSource {
 
     fun getFollowingUser(username: String): Observable<ArrayList<UserData>?>
 
-    fun getAllFavorite(): LiveData<List<Favorite>>
-//
-    suspend fun insertFavorite(favorite: Favorite)
+    fun getAllFavorite(): LiveData<List<UserData>>
+
+    fun getFavoriteById(id: Int): UserData
+
+    suspend fun insertFavorite(favorite: UserData)
+
+    suspend fun deleteFavorite(favorite: UserData)
 }

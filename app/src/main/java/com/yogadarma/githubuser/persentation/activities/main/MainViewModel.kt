@@ -4,10 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.yogadarma.githubuser.data.db.AppDatabase
-import com.yogadarma.githubuser.domain.entity.Favorite
 import com.yogadarma.githubuser.domain.responses.SearchUserResponse
-import com.yogadarma.githubuser.domain.usecases.GetFavoriteUseCase
 import com.yogadarma.githubuser.domain.usecases.SearchUserUseCase
 
 class MainViewModel(private val searchUserUseCase: SearchUserUseCase) : ViewModel() {

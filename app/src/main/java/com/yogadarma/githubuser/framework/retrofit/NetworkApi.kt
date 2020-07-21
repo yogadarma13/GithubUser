@@ -1,8 +1,8 @@
 package com.yogadarma.githubuser.framework.retrofit
 
+import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.domain.responses.SearchUserResponse
-import com.yogadarma.githubuser.domain.responses.UserData
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path

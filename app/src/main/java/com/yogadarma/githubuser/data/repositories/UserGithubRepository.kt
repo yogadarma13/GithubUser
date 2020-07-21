@@ -2,11 +2,9 @@ package com.yogadarma.githubuser.data.repositories
 
 import androidx.lifecycle.LiveData
 import com.yogadarma.githubuser.data.datasource.UserGithubDataSource
-import com.yogadarma.githubuser.data.db.dao.FavoriteDao
-import com.yogadarma.githubuser.domain.entity.Favorite
+import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.domain.responses.SearchUserResponse
-import com.yogadarma.githubuser.domain.responses.UserData
 import io.reactivex.rxjava3.core.Observable
 
 class UserGithubRepository(private val userGithubDataSource: UserGithubDataSource) :
@@ -24,9 +22,13 @@ class UserGithubRepository(private val userGithubDataSource: UserGithubDataSourc
     override fun getFollowingUser(username: String): Observable<ArrayList<UserData>?> =
         userGithubDataSource.getFollowingUser(username)
 
-    override fun getAllFavorite(): LiveData<List<Favorite>> = userGithubDataSource.getAllFavorite()
+    override fun getAllFavorite(): LiveData<List<UserData>> = userGithubDataSource.getAllFavorite()
 
-    override suspend fun insertFavorite(favorite: Favorite) = userGithubDataSource.insertFavorite(favorite)
+    override fun getFavoriteById(id: Int): UserData = userGithubDataSource.getFavoriteById(id)
+
+    override suspend fun insertFavorite(favorite: UserData) = userGithubDataSource.insertFavorite(favorite)
+
+    override suspend fun deleteFavorite(favorite: UserData) = userGithubDataSource.deleteFavorite(favorite)
 
 
 }

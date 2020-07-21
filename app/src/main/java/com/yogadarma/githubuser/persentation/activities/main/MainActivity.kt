@@ -14,7 +14,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yogadarma.githubuser.R
-import com.yogadarma.githubuser.domain.responses.UserData
+import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.persentation.activities.detail.DetailUserActivity
 import com.yogadarma.githubuser.persentation.activities.favorite.FavoriteActivity
 import com.yogadarma.githubuser.persentation.adapter.UserAdapter
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         userAdapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallBack {
             override fun onItemClicked(user: UserData) {
                 val intent = Intent(this@MainActivity, DetailUserActivity::class.java)
-                intent.putExtra(DetailUserActivity.ARG_USERNAME, user.login)
+                intent.putExtra(DetailUserActivity.ARG_USER_DATA, user)
                 startActivity(intent)
             }
         })

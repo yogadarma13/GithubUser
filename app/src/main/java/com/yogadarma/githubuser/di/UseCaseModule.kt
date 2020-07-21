@@ -42,7 +42,19 @@ val useCaseModule = module {
     }
 
     single {
+        GetFavoriteByIdUseCase(
+            get() as UserGithubRepository
+        )
+    }
+
+    single {
         AddFavoriteUseCase(
+            get() as UserGithubRepository
+        )
+    }
+
+    single {
+        DeleteFavoriteUseCase(
             get() as UserGithubRepository
         )
     }

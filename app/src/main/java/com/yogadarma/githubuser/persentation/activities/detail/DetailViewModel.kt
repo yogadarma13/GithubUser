@@ -4,21 +4,17 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.yogadarma.githubuser.domain.entity.Favorite
+import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
-import com.yogadarma.githubuser.domain.responses.UserData
-import com.yogadarma.githubuser.domain.usecases.AddFavoriteUseCase
-import com.yogadarma.githubuser.domain.usecases.GetDetailUserUseCase
-import com.yogadarma.githubuser.domain.usecases.GetFollowerUserUseCase
-import com.yogadarma.githubuser.domain.usecases.GetFollowingUserUseCase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.yogadarma.githubuser.domain.usecases.*
 
 class DetailViewModel(
     private val detailUserUseCase: GetDetailUserUseCase,
     private val followerUserUseCase: GetFollowerUserUseCase,
     private val followingUserUseCase: GetFollowingUserUseCase,
-    private val addFavoriteUseCase: AddFavoriteUseCase
+    private val favoriteById: GetFavoriteByIdUseCase,
+    private val addFavoriteUseCase: AddFavoriteUseCase,
+    private val deleteFavoriteUseCase: DeleteFavoriteUseCase
 ) : ViewModel() {
 
     private val dataUser = MutableLiveData<DetailUserResponse>()
@@ -33,8 +29,16 @@ class DetailViewModel(
             .subscribe(this::handleResponseFollowing, this::handleError)
     }
 
-    suspend fun setFavoriteUser(favorite: Favorite) {
+    suspend fun setFavoriteUser(favorite: UserData) {
         addFavoriteUseCase.invoke(favorite)
+    }
+
+    suspend fun deleteFavoriteUser(favorite: UserData) {
+        deleteFavoriteUseCase.invoke(favorite)
+    }
+
+    fun getFavoriteById(id: Int): UserData {
+        return favoriteById.invoke(id)
     }
 
     fun getDetailUser(): LiveData<DetailUserResponse> = dataUser

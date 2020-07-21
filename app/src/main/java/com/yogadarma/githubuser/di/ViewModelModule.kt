@@ -22,7 +22,9 @@ val viewModelModule = module {
             get() as GetDetailUserUseCase,
             get() as GetFollowerUserUseCase,
             get() as GetFollowingUserUseCase,
-            get() as AddFavoriteUseCase
+            get() as GetFavoriteByIdUseCase,
+            get() as AddFavoriteUseCase,
+            get() as DeleteFavoriteUseCase
         )
     }
 

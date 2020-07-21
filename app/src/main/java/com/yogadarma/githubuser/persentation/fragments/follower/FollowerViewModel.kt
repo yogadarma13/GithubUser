@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.yogadarma.githubuser.domain.responses.UserData
+import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.usecases.GetFollowerUserUseCase
 
 class FollowerViewModel(private val followerUserUseCase: GetFollowerUserUseCase) : ViewModel() {

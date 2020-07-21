@@ -7,7 +7,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.yogadarma.githubuser.R
-import com.yogadarma.githubuser.domain.entity.Favorite
+import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.persentation.adapter.SectionsPagerAdapter
 import com.yogadarma.githubuser.util.toast
@@ -19,11 +19,13 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
-        const val ARG_USERNAME = "username"
+        const val ARG_USER_DATA = "user_data"
     }
 
     private val detailViewModel: DetailViewModel by viewModel()
     private lateinit var detailUserResponse: DetailUserResponse
+    private lateinit var userData: UserData
+    private var statusFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +35,11 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val username = intent.getStringExtra(ARG_USERNAME)
+        img_favorite.setOnClickListener(this)
 
-        btn_favorite.setOnClickListener(this)
+        userData = intent.getParcelableExtra(ARG_USER_DATA)
 
-        detailViewModel.setDetailUser(username)
+        userData.login?.let { detailViewModel.setDetailUser(it) }
 
         detailViewModel.getDetailUser().observe(this, Observer {
             if (it != null) {
@@ -61,31 +63,49 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
+        statusFavorite = userData.id?.let { detailViewModel.getFavoriteById(it) } != null
+        setStatusFavorite(statusFavorite)
+
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        sectionsPagerAdapter.username = username
+        sectionsPagerAdapter.username = userData.login
         view_pager.adapter = sectionsPagerAdapter
         tabs.setupWithViewPager(view_pager)
     }
 
     override fun onClick(v: View) {
         when (v.id) {
-            R.id.btn_favorite -> {
-                GlobalScope.launch {
-                    detailViewModel.setFavoriteUser(
-                        Favorite(
-                            detailUserResponse.id!!,
-                            detailUserResponse.login ?: "",
-                            detailUserResponse.avatarUrl ?: "",
-                            detailUserResponse.bio ?: "",
-                            detailUserResponse.reposUrl ?: "",
-                            detailUserResponse.followingUrl ?: "",
-                            detailUserResponse.followersUrl ?: "",
-                            detailUserResponse.company ?: ""
-                        )
-                    )
-                }
-                toast("Favorite ditambah")
+            R.id.img_favorite -> {
+                statusFavorite = !statusFavorite
+                setStatusFavorite(statusFavorite)
+                setFavorite(statusFavorite)
             }
+        }
+    }
+
+    private fun setStatusFavorite(status: Boolean) {
+        if (status)
+            img_favorite.setImageResource(R.drawable.ic_favorite_true)
+        else
+            img_favorite.setImageResource(R.drawable.ic_favorite_false)
+
+
+    }
+
+    private fun setFavorite(status: Boolean) {
+        if (status) {
+            GlobalScope.launch {
+                detailViewModel.setFavoriteUser(
+                    userData
+                )
+            }
+            toast("Favorite ditambah")
+        } else {
+            GlobalScope.launch {
+                detailViewModel.deleteFavoriteUser(
+                    userData
+                )
+            }
+            toast("Favorite dibatalkan")
         }
     }
 

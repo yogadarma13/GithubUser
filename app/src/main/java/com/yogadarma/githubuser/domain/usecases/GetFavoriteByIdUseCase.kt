@@ -3,8 +3,8 @@ package com.yogadarma.githubuser.domain.usecases
 import com.yogadarma.githubuser.data.repositories.UserGithubRepository
 import com.yogadarma.githubuser.domain.entity.UserData
 
-class AddFavoriteUseCase(
+class GetFavoriteByIdUseCase(
     private val userGithubRepository: UserGithubRepository
 ) {
-    suspend fun invoke(favorite: UserData) = userGithubRepository.insertFavorite(favorite)
+    fun invoke(id: Int): UserData = userGithubRepository.getFavoriteById(id)
 }

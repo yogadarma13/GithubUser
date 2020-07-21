@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.yogadarma.githubuser.R
-import com.yogadarma.githubuser.domain.responses.UserData
+import com.yogadarma.githubuser.domain.entity.UserData
 import kotlinx.android.synthetic.main.layout_user.view.*
 
 class UserAdapter(private val listUser: ArrayList<UserData>?) :

@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.yogadarma.githubuser.R
-import com.yogadarma.githubuser.domain.entity.Favorite
+import com.yogadarma.githubuser.domain.entity.UserData
 import kotlinx.android.synthetic.main.layout_user.view.*
 
-class FavoriteAdapter(private val listFavorite: List<Favorite>): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+class FavoriteAdapter(private val listFavorite: List<UserData>): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
     private var onItemClickCallBack: OnItemClickCallBack? = null
 
     fun setOnItemClickCallback(onItemClickCallBack: OnItemClickCallBack) {
@@ -34,7 +34,7 @@ class FavoriteAdapter(private val listFavorite: List<Favorite>): RecyclerView.Ad
     }
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        fun bind(user: Favorite) {
+        fun bind(user: UserData) {
             with(itemView) {
                 Glide.with(itemView.context)
                     .load(user.avatarUrl)
@@ -47,7 +47,7 @@ class FavoriteAdapter(private val listFavorite: List<Favorite>): RecyclerView.Ad
     }
 
     interface OnItemClickCallBack {
-        fun onItemClicked(user: Favorite)
+        fun onItemClicked(user: UserData)
     }
 
 }

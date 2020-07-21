@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yogadarma.githubuser.R
-import com.yogadarma.githubuser.domain.entity.Favorite
+import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.persentation.activities.detail.DetailUserActivity
 import com.yogadarma.githubuser.persentation.adapter.FavoriteAdapter
 import com.yogadarma.githubuser.util.toast
@@ -42,9 +42,9 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun setupListener() {
         favoriteAdapter.setOnItemClickCallback(object : FavoriteAdapter.OnItemClickCallBack{
-            override fun onItemClicked(user: Favorite) {
+            override fun onItemClicked(user: UserData) {
                 val intent = Intent(this@FavoriteActivity, DetailUserActivity::class.java)
-                intent.putExtra(DetailUserActivity.ARG_USERNAME, user.login)
+                intent.putExtra(DetailUserActivity.ARG_USER_DATA, user)
                 startActivity(intent)
             }
 
