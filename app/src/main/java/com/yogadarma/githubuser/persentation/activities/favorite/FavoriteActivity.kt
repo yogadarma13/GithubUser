@@ -30,7 +30,6 @@ class FavoriteActivity : AppCompatActivity() {
         rv_user_favorite.setHasFixedSize(true)
 
         favoriteViewModel.allFavorite.observe(this, Observer {
-            toast(it.size.toString())
             if (it != null) {
                 rv_user_favorite.layoutManager = LinearLayoutManager(this)
                 favoriteAdapter = FavoriteAdapter(it)
@@ -42,7 +41,7 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun setupListener() {
-        favoriteAdapter.setOnItemClickCallback(object : FavoriteAdapter.OnItemClickCallBack{
+        favoriteAdapter.setOnItemClickCallback(object : FavoriteAdapter.OnItemClickCallBack {
             override fun onItemClicked(user: UserData) {
                 val intent = Intent(this@FavoriteActivity, DetailUserActivity::class.java)
                 intent.putExtra(DetailUserActivity.ARG_USER_DATA, user)
@@ -53,7 +52,7 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == android.R.id.home) {
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
         }
         return super.onOptionsItemSelected(item)

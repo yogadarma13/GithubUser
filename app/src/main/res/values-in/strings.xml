@@ -13,4 +13,8 @@
     <string name="detail_page">Detail User</string>
     <string name="add_favorite">Favorit ditambahkan</string>
     <string name="cancel_favorite">Favorit dibatalkan</string>
+    <string name="title_reminder">Pengingat harian</string>
+    <string name="summary_reminder_off">Pengingat harian tidak aktif</string>
+    <string name="summary_reminder_on">Pengingat harian aktif</string>
+    <string name="message_reminder">Hello!! Selamat Pagi</string>
 </resources>
