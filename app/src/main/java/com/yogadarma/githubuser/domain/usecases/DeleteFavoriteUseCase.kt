@@ -6,5 +6,5 @@ import com.yogadarma.githubuser.domain.entity.UserData
 class DeleteFavoriteUseCase(
     private val userGithubRepository: UserGithubRepository
 ) {
-        suspend fun invoke(favorite: UserData) = userGithubRepository.deleteFavorite(favorite)
+        fun invoke(id: Int): Int = userGithubRepository.deleteFavorite(id)
 }

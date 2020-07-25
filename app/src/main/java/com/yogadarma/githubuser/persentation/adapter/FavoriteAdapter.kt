@@ -1,5 +1,6 @@
 package com.yogadarma.githubuser.persentation.adapter
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,15 @@ import com.yogadarma.githubuser.R
 import com.yogadarma.githubuser.domain.entity.UserData
 import kotlinx.android.synthetic.main.layout_user.view.*
 
-class FavoriteAdapter(private val listFavorite: List<UserData>): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+class FavoriteAdapter(acctivity: Activity): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+
+    var listFavorite = ArrayList<UserData>()
+        set(listNotes) {
+            this.listFavorite.clear()
+            this.listFavorite.addAll(listNotes)
+            notifyDataSetChanged()
+        }
+
     private var onItemClickCallBack: OnItemClickCallBack? = null
 
     fun setOnItemClickCallback(onItemClickCallBack: OnItemClickCallBack) {

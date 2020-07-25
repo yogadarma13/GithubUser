@@ -1,5 +1,7 @@
 package com.yogadarma.githubuser.persentation.activities.detail
 
+import android.content.ContentValues
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.yogadarma.githubuser.R
 import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
+import com.yogadarma.githubuser.helper.MappingHelper
 import com.yogadarma.githubuser.persentation.adapter.SectionsPagerAdapter
 import com.yogadarma.githubuser.util.toast
 import kotlinx.android.synthetic.main.activity_detail_user.*
@@ -23,9 +26,9 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private val detailViewModel: DetailViewModel by viewModel()
+    private var statusFavorite: Boolean = false
     private lateinit var detailUserResponse: DetailUserResponse
     private lateinit var userData: UserData
-    private var statusFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,8 +67,14 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
-        statusFavorite = userData.id?.let { detailViewModel.getFavoriteById(it) } != null
-        setStatusFavorite(statusFavorite)
+        userData.id?.let { detailViewModel.setFavoriteById(it) }
+
+        detailViewModel.getFavoriteById().observe(this, Observer {
+            if (it.count >= 1) {
+                statusFavorite = true
+            }
+            setStatusFavorite(statusFavorite)
+        })
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
         sectionsPagerAdapter.username = userData.login
@@ -88,24 +97,20 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
             img_favorite.setImageResource(R.drawable.ic_favorite_true)
         else
             img_favorite.setImageResource(R.drawable.ic_favorite_false)
-
-
     }
 
     private fun setFavorite(status: Boolean) {
         if (status) {
-            GlobalScope.launch {
-                detailViewModel.setFavoriteUser(
-                    userData
-                )
-            }
+            val content = MappingHelper.convertToContentValues(userData)
+            detailViewModel.setFavoriteUser(
+                content
+            )
+
             toast(getString(R.string.add_favorite))
         } else {
-            GlobalScope.launch {
-                detailViewModel.deleteFavoriteUser(
-                    userData
-                )
-            }
+            detailViewModel.deleteFavoriteUser(
+                userData.id!!
+            )
             toast(getString(R.string.cancel_favorite))
         }
     }

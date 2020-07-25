@@ -1,5 +1,7 @@
 package com.yogadarma.githubuser.data.repositories
 
+import android.content.ContentValues
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import com.yogadarma.githubuser.data.datasource.UserGithubDataSource
 import com.yogadarma.githubuser.domain.entity.UserData
@@ -22,13 +24,12 @@ class UserGithubRepository(private val userGithubDataSource: UserGithubDataSourc
     override fun getFollowingUser(username: String): Observable<ArrayList<UserData>?> =
         userGithubDataSource.getFollowingUser(username)
 
-    override fun getAllFavorite(): LiveData<List<UserData>> = userGithubDataSource.getAllFavorite()
+    override fun getAllFavorite(): Cursor? = userGithubDataSource.getAllFavorite()
 
-    override fun getFavoriteById(id: Int): UserData = userGithubDataSource.getFavoriteById(id)
+    override fun getFavoriteById(id: Int): Cursor? = userGithubDataSource.getFavoriteById(id)
 
-    override suspend fun insertFavorite(favorite: UserData) = userGithubDataSource.insertFavorite(favorite)
+    override fun insertFavorite(favorite: ContentValues) = userGithubDataSource.insertFavorite(favorite)
 
-    override suspend fun deleteFavorite(favorite: UserData) = userGithubDataSource.deleteFavorite(favorite)
-
+    override fun deleteFavorite(id: Int): Int = userGithubDataSource.deleteFavorite(id)
 
 }

@@ -1,5 +1,6 @@
 package com.yogadarma.githubuser.data.db.dao
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.yogadarma.githubuser.domain.entity.UserData
@@ -8,14 +9,14 @@ import com.yogadarma.githubuser.domain.entity.UserData
 interface FavoriteDao {
 
     @Query("SELECT * FROM favorite")
-    fun getAllFavorite(): LiveData<List<UserData>>
+    fun getAllFavorite(): Cursor
 
     @Query("SELECT * FROM favorite WHERE id = :id")
-    fun getFavoriteById(id: Int): UserData
+    fun getFavoriteById(id: Int?): Cursor
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertFavorite(favorite: UserData)
+    fun insertFavorite(favorite: UserData?): Long
 
-    @Delete
-    suspend fun deleteFavorite(favorite: UserData)
+    @Query("DELETE FROM favorite WHERE id = :id")
+    fun deleteFavorite(id: Int?): Int
 }
