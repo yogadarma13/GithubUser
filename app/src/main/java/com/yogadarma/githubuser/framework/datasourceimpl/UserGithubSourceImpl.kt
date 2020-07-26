@@ -4,9 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
-import androidx.lifecycle.LiveData
 import com.yogadarma.githubuser.data.datasource.UserGithubDataSource
-import com.yogadarma.githubuser.data.db.dao.FavoriteDao
 import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.domain.responses.SearchUserResponse
@@ -37,8 +35,8 @@ class UserGithubSourceImpl(
     override fun getFavoriteById(id: Int): Cursor? =
         context.contentResolver.query(Uri.parse("$CONTENT_URI/$id"), null, null, null, null)
 
-    override fun insertFavorite(favorite: ContentValues): Uri? = context.contentResolver.insert(CONTENT_URI, favorite)
-
+    override fun insertFavorite(favorite: ContentValues): Uri? =
+        context.contentResolver.insert(CONTENT_URI, favorite)
 
     override fun deleteFavorite(id: Int): Int =
         context.contentResolver.delete(Uri.parse("$CONTENT_URI/$id"), null, null)

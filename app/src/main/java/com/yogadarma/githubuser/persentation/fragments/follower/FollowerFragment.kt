@@ -1,10 +1,10 @@
 package com.yogadarma.githubuser.persentation.fragments.follower
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yogadarma.githubuser.R
@@ -15,7 +15,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class FollowerFragment : Fragment() {
 
     companion object {
-        private val ARG_USERNAME = "username"
+        private const val ARG_USERNAME = "username"
 
         fun newInstance(username: String?): FollowerFragment {
             val fragment = FollowerFragment()

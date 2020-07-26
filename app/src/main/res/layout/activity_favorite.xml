@@ -7,9 +7,9 @@
     tools:context=".persentation.activities.favorite.FavoriteActivity">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_user_favorite"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rv_user_favorite"/>
+        android:layout_height="match_parent" />
 
     <ProgressBar
         android:id="@+id/progress_bar_favorite"

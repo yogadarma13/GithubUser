@@ -9,11 +9,11 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.yogadarma.githubuser.R
 import com.yogadarma.githubuser.persentation.activities.main.MainActivity
+import com.yogadarma.githubuser.util.toast
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -99,8 +99,7 @@ class AlarmReceiver : BroadcastReceiver() {
             pendingIntent
         )
 
-        Toast.makeText(context, context.getString(R.string.summary_reminder_on), Toast.LENGTH_SHORT)
-            .show()
+        context.toast(context.getString(R.string.summary_reminder_on))
     }
 
     fun setDailyReminderOff(context: Context?) {
@@ -111,11 +110,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
         alarmManager.cancel(pendingIntent)
 
-        Toast.makeText(
-            context,
-            context?.getString(R.string.summary_reminder_off),
-            Toast.LENGTH_SHORT
-        ).show()
+        context.toast(context?.getString(R.string.summary_reminder_off))
     }
 
     private fun isDateInvalid(date: String, format: String): Boolean {

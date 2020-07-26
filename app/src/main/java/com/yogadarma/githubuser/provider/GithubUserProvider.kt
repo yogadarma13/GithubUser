@@ -5,13 +5,11 @@ import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import android.widget.Toast
 import com.yogadarma.githubuser.data.db.dao.FavoriteDao
-import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.helper.MappingHelper
 import org.koin.android.ext.android.inject
 
-class GithubUserProvider: ContentProvider()  {
+class GithubUserProvider : ContentProvider() {
 
     companion object {
 
@@ -33,9 +31,9 @@ class GithubUserProvider: ContentProvider()  {
 
             sUriMatcher.addURI(AUTHORITY, "$TABLE_NAME/#", FAVORITE_ID)
         }
-
     }
-    private  val favoriteDao: FavoriteDao by inject()
+
+    private val favoriteDao: FavoriteDao by inject()
 
     override fun onCreate(): Boolean {
         return true
@@ -46,7 +44,7 @@ class GithubUserProvider: ContentProvider()  {
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
 
-        return when(sUriMatcher.match(uri)) {
+        return when (sUriMatcher.match(uri)) {
             FAVORITE -> favoriteDao.getAllFavorite()
             FAVORITE_ID -> favoriteDao.getFavoriteById(uri.lastPathSegment!!.toInt())
             else -> null
@@ -60,7 +58,7 @@ class GithubUserProvider: ContentProvider()  {
         }
         context?.contentResolver?.notifyChange(CONTENT_URI, null)
 
-        return  deleteId
+        return deleteId
     }
 
     override fun getType(uri: Uri): String? {

@@ -17,4 +17,5 @@
     <string name="summary_reminder_off">Pengingat harian tidak aktif</string>
     <string name="summary_reminder_on">Pengingat harian aktif</string>
     <string name="message_reminder">Hello!! Selamat Pagi</string>
+    <string name="no_data">Anda tidak memiliki data favorit</string>
 </resources>

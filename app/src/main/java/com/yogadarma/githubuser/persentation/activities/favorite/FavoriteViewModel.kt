@@ -1,6 +1,5 @@
 package com.yogadarma.githubuser.persentation.activities.favorite
 
-import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

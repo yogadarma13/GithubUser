@@ -86,4 +86,4 @@ data class UserData(
     @field:SerializedName("organizations_url")
     @ColumnInfo(name = "organizations_url")
     val organizationsUrl: String? = null
-): Parcelable
+) : Parcelable

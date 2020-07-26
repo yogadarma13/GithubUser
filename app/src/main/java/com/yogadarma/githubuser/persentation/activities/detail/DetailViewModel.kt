@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel
 import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.domain.usecases.*
-import com.yogadarma.githubuser.helper.MappingHelper
 
 class DetailViewModel(
     private val detailUserUseCase: GetDetailUserUseCase,

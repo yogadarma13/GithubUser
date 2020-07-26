@@ -1,11 +1,9 @@
 package com.yogadarma.githubuser.persentation.activities.detail
 
-import android.content.ContentValues
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.yogadarma.githubuser.R
@@ -15,8 +13,6 @@ import com.yogadarma.githubuser.helper.MappingHelper
 import com.yogadarma.githubuser.persentation.adapter.SectionsPagerAdapter
 import com.yogadarma.githubuser.util.toast
 import kotlinx.android.synthetic.main.activity_detail_user.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DetailUserActivity : AppCompatActivity(), View.OnClickListener {

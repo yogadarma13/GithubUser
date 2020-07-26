@@ -2,7 +2,6 @@ package com.yogadarma.githubuser.helper
 
 import android.content.ContentValues
 import android.database.Cursor
-import android.util.Log
 import com.yogadarma.githubuser.domain.entity.UserData
 
 class MappingHelper {
@@ -105,13 +104,10 @@ class MappingHelper {
                 nodeId,
                 organizationsUrl
             )
-
-
             return userData
-
         }
 
-        fun convertToContentValues(userData: UserData): ContentValues{
+        fun convertToContentValues(userData: UserData): ContentValues {
             val values = ContentValues()
 
             values.put("id", userData.id)
@@ -136,61 +132,5 @@ class MappingHelper {
 
             return values
         }
-
-//        fun mapCursorToUserData(favoriteCursor: Cursor?): UserData {
-//            var userData = UserData()
-//
-//            Log.d("TESSSTES", favoriteCursor?.count.toString())
-//
-//            favoriteCursor?.apply {
-//                if (moveToFirst()) {
-//                    val id = getInt(getColumnIndexOrThrow("id"))
-//                    val gistsUrl = getString(getColumnIndexOrThrow("gists_url"))
-//                    val reposUrl = getString(getColumnIndexOrThrow("repos_url"))
-//                    val followingUrl = getString(getColumnIndexOrThrow("following_url"))
-//                    val starredUrl = getString(getColumnIndexOrThrow("starred_url"))
-//                    val login = getString(getColumnIndexOrThrow("login"))
-//                    val followersUrl = getString(getColumnIndexOrThrow("followers_url"))
-//                    val type = getString(getColumnIndexOrThrow("type"))
-//                    val url = getString(getColumnIndexOrThrow("url"))
-//                    val subscriptionsUrl = getString(getColumnIndexOrThrow("subscriptions_url"))
-//                    val score = getDouble(getColumnIndexOrThrow("score"))
-//                    val receivedEventsUrl = getString(getColumnIndexOrThrow("received_events_url"))
-//                    val avatarUrl = getString(getColumnIndexOrThrow("avatar_url"))
-//                    val eventsUrl = getString(getColumnIndexOrThrow("events_url"))
-//                    val htmlUrl = getString(getColumnIndexOrThrow("html_url"))
-//                    val siteAdmin = getInt(getColumnIndexOrThrow("site_admin")) > 0
-//                    val gravatarId = getString(getColumnIndexOrThrow("gravatar_id"))
-//                    val nodeId = getString(getColumnIndexOrThrow("node_id"))
-//                    val organizationsUrl = getString(getColumnIndexOrThrow("organizations_url"))
-//
-//                    userData = UserData(
-//                        id,
-//                        gistsUrl,
-//                        reposUrl,
-//                        followingUrl,
-//                        starredUrl,
-//                        login,
-//                        followersUrl,
-//                        type,
-//                        url,
-//                        subscriptionsUrl,
-//                        score,
-//                        receivedEventsUrl,
-//                        avatarUrl,
-//                        eventsUrl,
-//                        htmlUrl,
-//                        siteAdmin,
-//                        gravatarId,
-//                        nodeId,
-//                        organizationsUrl
-//                    )
-//                } else {
-//                    userData = UserData()
-//                }
-//            }
-//
-//            return userData
-//        }
     }
 }

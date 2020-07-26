@@ -11,7 +11,7 @@ import com.yogadarma.githubuser.R
 import com.yogadarma.githubuser.domain.entity.UserData
 import kotlinx.android.synthetic.main.layout_user.view.*
 
-class FavoriteAdapter(acctivity: Activity): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     var listFavorite = ArrayList<UserData>()
         set(listNotes) {
@@ -42,7 +42,7 @@ class FavoriteAdapter(acctivity: Activity): RecyclerView.Adapter<FavoriteAdapter
         listFavorite.get(position).let { holder.bind(it) }
     }
 
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(user: UserData) {
             with(itemView) {
                 Glide.with(itemView.context)

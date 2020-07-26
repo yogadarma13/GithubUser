@@ -3,7 +3,6 @@ package com.yogadarma.githubuser.data.datasource
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
-import androidx.lifecycle.LiveData
 import com.yogadarma.githubuser.domain.entity.UserData
 import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.domain.responses.SearchUserResponse

@@ -2,13 +2,12 @@ package com.yogadarma.githubuser.persentation.activities.favorite
 
 import android.content.Intent
 import android.database.ContentObserver
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.os.HandlerThread
 import android.os.Looper
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yogadarma.githubuser.R
@@ -18,10 +17,6 @@ import com.yogadarma.githubuser.persentation.adapter.FavoriteAdapter
 import com.yogadarma.githubuser.provider.GithubUserProvider.Companion.CONTENT_URI
 import com.yogadarma.githubuser.util.toast
 import kotlinx.android.synthetic.main.activity_favorite.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FavoriteActivity : AppCompatActivity() {
@@ -43,7 +38,7 @@ class FavoriteActivity : AppCompatActivity() {
 
         rv_user_favorite.layoutManager = LinearLayoutManager(this)
         rv_user_favorite.setHasFixedSize(true)
-        favoriteAdapter = FavoriteAdapter(this)
+        favoriteAdapter = FavoriteAdapter()
         rv_user_favorite.adapter = favoriteAdapter
 
 
@@ -70,19 +65,16 @@ class FavoriteActivity : AppCompatActivity() {
 
     private fun loadFavoritesAsync() {
         progress_bar_favorite.visibility = View.VISIBLE
-//        GlobalScope.launch(Dispatchers.IO) {
-            favoriteViewModel.setFavoriteList()
-//        }
+        favoriteViewModel.setFavoriteList()
 
         favoriteViewModel.getFavoriteList().observe(this, Observer {
             if (it != null) {
                 progress_bar_favorite.visibility = View.GONE
-                toast(it.size.toString())
                 if (it.size > 0) {
                     favoriteAdapter.listFavorite = it
                 } else {
                     favoriteAdapter.listFavorite = ArrayList()
-                    toast("tidak ada data")
+                    toast(getString(R.string.no_data))
                 }
 
                 setupListener()

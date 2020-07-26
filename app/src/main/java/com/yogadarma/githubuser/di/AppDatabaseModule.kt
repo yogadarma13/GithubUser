@@ -16,7 +16,6 @@ val appDatabaseModule = module {
             .build()
     }
 
-
     fun provideDao(database: AppDatabase): FavoriteDao {
         return database.favoriteDao
     }

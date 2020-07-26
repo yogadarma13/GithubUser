@@ -10,10 +10,11 @@
     <string name="selected_language">English</string>
     <string name="favorite_page">Favorite</string>
     <string name="detail_page">User\'s Detail</string>
-    <string name="add_favorite">Favorit added</string>
-    <string name="cancel_favorite">Favorit canceled</string>
+    <string name="add_favorite">Favorite added</string>
+    <string name="cancel_favorite">Favorite canceled</string>
     <string name="title_reminder">Daily reminder</string>
     <string name="summary_reminder_off">Daily reminder is off</string>
     <string name="summary_reminder_on">Daily reminder is on</string>
     <string name="message_reminder">Hello!! Good Morning</string>
+    <string name="no_data">You have no favorite data</string>
 </resources>
