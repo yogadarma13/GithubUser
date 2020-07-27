@@ -18,5 +18,4 @@
     <string name="message_reminder">Hello!! Good Morning</string>
     <string name="no_data">You have no favorite data</string>
     <string name="empty_text">No Data</string>
-    <string name="search_not_found">Username not found</string>
 </resources>

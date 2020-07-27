@@ -5,6 +5,7 @@ import android.database.ContentObserver
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,8 +65,10 @@ class FavoriteActivity : AppCompatActivity() {
         favoriteViewModel.getFavoriteList().observe(this, Observer {
             if (it != null) {
                 if (it.size > 0) {
+                    img_no_data.visibility = View.GONE
                     favoriteAdapter.listFavorite = it
                 } else {
+                    img_no_data.visibility = View.VISIBLE
                     favoriteAdapter.listFavorite = ArrayList()
                     toast(getString(R.string.no_data))
                 }

@@ -57,10 +57,10 @@ class MainActivity : AppCompatActivity() {
                 progress_bar.visibility = View.GONE
                 rv_user_github.layoutManager = LinearLayoutManager(this)
 
-                if (it.totalCount == 0) {
-                    userAdapter = UserAdapter(ArrayList())
+                userAdapter = if (it.totalCount == 0) {
+                    UserAdapter(ArrayList())
                 } else {
-                    userAdapter = UserAdapter(it.items)
+                    UserAdapter(it.items)
                 }
 
                 rv_user_github.adapter = userAdapter
