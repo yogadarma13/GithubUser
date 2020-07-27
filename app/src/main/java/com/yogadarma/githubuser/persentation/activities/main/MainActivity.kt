@@ -40,12 +40,14 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 progress_bar.visibility = View.VISIBLE
                 query?.let { mainViewModel.setResultSearch(it) }
+
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 progress_bar.visibility = View.VISIBLE
                 newText?.let { mainViewModel.setResultSearch(it) }
+
                 return true
             }
         })
@@ -54,7 +56,13 @@ class MainActivity : AppCompatActivity() {
             if (it != null) {
                 progress_bar.visibility = View.GONE
                 rv_user_github.layoutManager = LinearLayoutManager(this)
-                userAdapter = UserAdapter(it.items)
+
+                if (it.totalCount == 0) {
+                    userAdapter = UserAdapter(ArrayList())
+                } else {
+                    userAdapter = UserAdapter(it.items)
+                }
+
                 rv_user_github.adapter = userAdapter
 
                 setupListener()

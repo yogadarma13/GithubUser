@@ -64,15 +64,15 @@ class FavoriteActivity : AppCompatActivity() {
     }
 
     private fun loadFavoritesAsync() {
-        progress_bar_favorite.visibility = View.VISIBLE
         favoriteViewModel.setFavoriteList()
 
         favoriteViewModel.getFavoriteList().observe(this, Observer {
             if (it != null) {
-                progress_bar_favorite.visibility = View.GONE
                 if (it.size > 0) {
+                    img_no_data.visibility = View.GONE
                     favoriteAdapter.listFavorite = it
                 } else {
+                    img_no_data.visibility = View.VISIBLE
                     favoriteAdapter.listFavorite = ArrayList()
                     toast(getString(R.string.no_data))
                 }
