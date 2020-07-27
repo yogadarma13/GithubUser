@@ -24,4 +24,5 @@ class MainViewModel(private val searchUserUseCase: SearchUserUseCase) : ViewMode
     private fun handleError(error: Throwable) {
         Log.d("onFailure", error.message.toString())
     }
+
 }

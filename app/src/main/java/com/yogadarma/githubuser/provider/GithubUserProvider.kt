@@ -6,10 +6,15 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import com.yogadarma.githubuser.data.db.dao.FavoriteDao
+import com.yogadarma.githubuser.di.MyKoinComponent
+import com.yogadarma.githubuser.di.MyKoinContext
+import com.yogadarma.githubuser.di.appDatabaseModule
 import com.yogadarma.githubuser.helper.MappingHelper
 import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.koinApplication
 
-class GithubUserProvider : ContentProvider() {
+class GithubUserProvider : ContentProvider(), MyKoinComponent {
 
     companion object {
 
@@ -36,6 +41,10 @@ class GithubUserProvider : ContentProvider() {
     private val favoriteDao: FavoriteDao by inject()
 
     override fun onCreate(): Boolean {
+        MyKoinContext.koinApplication = koinApplication {
+            androidContext(context!!.applicationContext)
+            modules(appDatabaseModule)
+        }
         return true
     }
 
@@ -43,7 +52,6 @@ class GithubUserProvider : ContentProvider() {
         uri: Uri, projection: Array<String>?, selection: String?,
         selectionArgs: Array<String>?, sortOrder: String?
     ): Cursor? {
-
         return when (sUriMatcher.match(uri)) {
             FAVORITE -> favoriteDao.getAllFavorite()
             FAVORITE_ID -> favoriteDao.getFavoriteById(uri.lastPathSegment!!.toInt())

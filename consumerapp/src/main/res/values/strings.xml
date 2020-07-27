@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ConsumerApp</string>
+    <string name="count_follower">%1$d Follower</string>
+    <string name="count_following">%1$d Following</string>
+    <string name="tab_text_1">Follower</string>
+    <string name="tab_text_2">Following</string>
+    <string name="favorite_page">Favorite</string>
+    <string name="detail_page">User\'s Detail</string>
+    <string name="add_favorite">Favorite added</string>
+    <string name="cancel_favorite">Favorite canceled</string>
+    <string name="no_data">You have no favorite data</string>
+</resources>

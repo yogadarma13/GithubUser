@@ -1,9 +1,9 @@
-package com.yogadarma.githubuser
+package com.yogadarma.consumerapp
 
 import android.app.Application
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.yogadarma.githubuser.di.*
+import com.yogadarma.consumerapp.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
