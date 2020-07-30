@@ -8,7 +8,6 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.yogadarma.githubuser.R
 import com.yogadarma.githubuser.domain.entity.UserData
-import com.yogadarma.githubuser.domain.responses.DetailUserResponse
 import com.yogadarma.githubuser.helper.MappingHelper
 import com.yogadarma.githubuser.persentation.adapter.SectionsPagerAdapter
 import com.yogadarma.githubuser.util.toast
@@ -23,7 +22,6 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
 
     private val detailViewModel: DetailViewModel by viewModel()
     private var statusFavorite: Boolean = false
-    private lateinit var detailUserResponse: DetailUserResponse
     private lateinit var userData: UserData
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,23 +41,18 @@ class DetailUserActivity : AppCompatActivity(), View.OnClickListener {
 
         detailViewModel.getDetailUser().observe(this, Observer {
             if (it != null) {
-                detailUserResponse = it
-                tv_user_name.text = it.name
                 Glide.with(this).load(it.avatarUrl).into(civ_avatar_profile)
-            }
-        })
-
-        detailViewModel.getFollowerUser().observe(this, Observer {
-            if (it != null) {
-                val countFollower = resources.getString(R.string.count_follower, it.size)
-                tv_count_follower.text = countFollower
-            }
-        })
-
-        detailViewModel.getFollowingUser().observe(this, Observer {
-            if (it != null) {
-                val countFollowing = resources.getString(R.string.count_following, it.size)
-                tv_count_following.text = countFollowing
+                tv_name.text = it.name
+                tv_user_name.text = it.login
+                tv_location.text = it.location ?: "-"
+                tv_company.text = it.company ?: "-"
+                tv_count_repo.text = resources.getString(
+                    R.string.count_repo,
+                    ((it.publicRepos ?: 0) + (it.totalPrivateRepos ?: 0))
+                )
+                tv_count_follower.text = resources.getString(R.string.count_follower, it.followers)
+                tv_count_following.text =
+                    resources.getString(R.string.count_following, it.following)
             }
         })
 

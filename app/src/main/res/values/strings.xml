@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Github User</string>
     <string name="search_hint">Search username</string>
+    <string name="count_repo">%1$d Repositories</string>
     <string name="count_follower">%1$d Follower</string>
     <string name="count_following">%1$d Following</string>
     <string name="tab_text_1">Follower</string>

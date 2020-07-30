@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Favorite Consumer</string>
+    <string name="count_repo">%1$d Repositori</string>
     <string name="count_follower">%1$d Pengikut</string>
     <string name="count_following">%1$d Diikuti</string>
     <string name="tab_text_1">Pengikut</string>

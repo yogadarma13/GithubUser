@@ -12,24 +12,16 @@ import com.yogadarma.githubuser.domain.usecases.*
 
 class DetailViewModel(
     private val detailUserUseCase: GetDetailUserUseCase,
-    private val followerUserUseCase: GetFollowerUserUseCase,
-    private val followingUserUseCase: GetFollowingUserUseCase,
     private val favoriteByIdUseCase: GetFavoriteByIdUseCase,
     private val addFavoriteUseCase: AddFavoriteUseCase,
     private val deleteFavoriteUseCase: DeleteFavoriteUseCase
 ) : ViewModel() {
 
     private val dataUser = MutableLiveData<DetailUserResponse>()
-    private val followerUser = MutableLiveData<ArrayList<UserData>?>()
-    private val followingUser = MutableLiveData<ArrayList<UserData>?>()
     private val favoriteUser = MutableLiveData<Cursor>()
 
     fun setDetailUser(username: String) {
         detailUserUseCase.invoke(username).subscribe(this::handleResponseDetail, this::handleError)
-        followerUserUseCase.invoke(username)
-            .subscribe(this::handleResponseFollower, this::handleError)
-        followingUserUseCase.invoke(username)
-            .subscribe(this::handleResponseFollowing, this::handleError)
     }
 
     fun setFavoriteUser(favorite: ContentValues) {
@@ -49,20 +41,8 @@ class DetailViewModel(
 
     fun getDetailUser(): LiveData<DetailUserResponse> = dataUser
 
-    fun getFollowerUser(): LiveData<ArrayList<UserData>?> = followerUser
-
-    fun getFollowingUser(): LiveData<ArrayList<UserData>?> = followingUser
-
     private fun handleResponseDetail(response: DetailUserResponse) {
         dataUser.postValue(response)
-    }
-
-    private fun handleResponseFollower(response: ArrayList<UserData>?) {
-        followerUser.postValue(response)
-    }
-
-    private fun handleResponseFollowing(response: ArrayList<UserData>?) {
-        followingUser.postValue(response)
     }
 
     private fun handleError(error: Throwable) {
